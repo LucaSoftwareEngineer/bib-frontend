@@ -1,5 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import useLogin from "../../hooks/useLogin";
+import { Link } from "react-router";
 
 const LoginComponent = () => {
   const { setEmail, setPassword, loginHandler } = useLogin();
@@ -64,9 +65,12 @@ const LoginComponent = () => {
                       </label>
                     </div>
                   </div>
-                  <a className="text-primary-600 dark:text-primary-500 cursor-pointer text-sm font-medium hover:underline">
-                    Password dimenticata?
-                  </a>
+                  <Link
+                    to="/register"
+                    className="text-primary-600 dark:text-primary-500 cursor-pointer text-sm font-medium hover:underline"
+                  >
+                    Registrati
+                  </Link>
                 </div>
                 <button
                   onClick={() => {
