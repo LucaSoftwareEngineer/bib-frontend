@@ -27,6 +27,21 @@ const SidebarComponent = (props: { sidebarClasse: string }) => {
                 <span className="ms-3">Dashboard</span>
               </a>
             </li>
+            <li>
+              <a
+                onClick={() => {
+                  navigate("/libri");
+                }}
+                className="group flex cursor-pointer items-center border-b-[1px] border-b-[#DF03AF] py-2 pl-[20px] text-[#DF03AF] hover:bg-[#DF03AF] hover:text-white"
+              >
+                <img
+                  src="/icons8-dashboard-94.png"
+                  className="h-5 w-5"
+                  alt="dashboard-icon"
+                />
+                <span className="ms-3">Elenco libri</span>
+              </a>
+            </li>
           </ul>
           <div className="mt-[25vh] p-[25px] text-center text-gray-500 md:mt-[35vh]">
             <i>Progettato e sviluppato da LucaSoftwareEngineer</i>
