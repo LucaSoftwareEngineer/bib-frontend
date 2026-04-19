@@ -1,5 +1,6 @@
 export interface ILoginResponse {
-  User_id: number;
+  UtenteId: number;
   Email: string;
   Token: string;
+  Noleggi: number;
 }

@@ -27,7 +27,7 @@ const useLogin = () => {
       LoginService({ email: email, password: password })
         .then((response) => {
           if (response.status === 200) {
-            ls.set("token", response.data);
+            ls.set("details", JSON.stringify(response.data));
             toast.success("Accesso effettuato...");
             setTimeout(() => {
               navigate("/dashboard");

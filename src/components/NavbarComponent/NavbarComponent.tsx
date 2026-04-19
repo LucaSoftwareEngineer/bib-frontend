@@ -2,8 +2,13 @@ import SidebarComponent from "../SidebarComponent/SidebarComponent.tsx";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router";
+import SecureLS from "secure-ls";
 
 const NavbarComponent = () => {
+
+  const ls = new SecureLS();
+  const details = JSON.parse(ls.get("details"));
+
   const navigate = useNavigate();
 
   const [isOpenUserDropDownMenu, setisOpenUserDropDownMenu] = useState(false);
@@ -80,7 +85,7 @@ const NavbarComponent = () => {
                   <img src="/logo.png" className="h-8" alt="Logo" />
                 </div>
                 <span className="self-center text-xl font-semibold whitespace-nowrap text-white sm:text-2xl">
-                  <i>Autocar</i>
+                  <i>BIB</i>
                 </span>
               </a>
             </div>
@@ -107,11 +112,8 @@ const NavbarComponent = () => {
       </nav>
       <div className={userDropDownClasse}>
         <div className="px-4 py-3" role="none">
-          <p className="text-sm text-gray-900" role="none">
-            name surname
-          </p>
           <p className="truncate text-sm font-medium text-gray-900" role="none">
-            username
+            {details.email}
           </p>
         </div>
         <ul className="py-1" role="none">

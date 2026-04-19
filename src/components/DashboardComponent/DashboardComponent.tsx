@@ -1,10 +1,10 @@
-/*import useReportConcessionario from "../../hooks/useReportConcessionario.tsx";
-import useUserDetails from "../../hooks/useUserDetails.tsx";
+import SecureLS from "secure-ls";
 import NavbarComponent from "../NavbarComponent/NavbarComponent.tsx";
 
 const DashboardComponent = () => {
-  const { email } = useUserDetails();
-  const { report } = useReportConcessionario();
+
+  const ls = new SecureLS();
+  const details = JSON.parse(ls.get("details"));
 
   return (
     <>
@@ -22,12 +22,10 @@ const DashboardComponent = () => {
               </div>
               <div className="p-5">
                 <p className="mb-0 font-normal text-gray-700">
-                  Benvenuto nella tua Dashboard, in questa pagina puoi vedere i
-                  report delle auto presenti nel tuo concessionario.
+                  Benvenuto nella tua Dashboard, in questa pagina puoi vedere un riepilogo del tuo profilo.
                   <br />
                   Utilizzando la sidebar (il menù alla tua sinistra) puoi
-                  registrare una nuova auto, impostare una targa oppure vedere
-                  l'elenco delle auto presenti nel concessionario.
+                  noleggiare degli altri libri.
                 </p>
                 <br />
               </div>
@@ -49,7 +47,7 @@ const DashboardComponent = () => {
                           <b>Email:</b>
                         </td>
                         <td className="p-[5px] pl-5 text-gray-950">
-                          {email}
+                          {details.email}
                         </td>
                       </tr>
                       <tr>
@@ -57,7 +55,7 @@ const DashboardComponent = () => {
                           <b>Tipologia di account:</b>
                         </td>
                         <td className="p-[5px] pl-5 text-gray-950">
-                          Amministratore
+                          {details.ruolo}
                         </td>
                       </tr>
                       <tr>
@@ -90,29 +88,11 @@ const DashboardComponent = () => {
                       <tbody>
                         <tr>
                           <td className="p-[5px] text-[#DF03AF]">
-                            <b>Numero di auto senza targa:</b>
+                            <b>Numero di libri noleggiati:</b>
                           </td>
                           <td className="p-[5px] pl-5 text-gray-950">
-                            {report.autoSenzaTarga}
-                            &nbsp; auto
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-[5px] text-[#DF03AF]">
-                            <b>Numero di auto con targa:</b>
-                          </td>
-                          <td className="p-[5px] pl-5 text-gray-950">
-                            {report.autoConTarga}
-                            &nbsp; auto
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-[5px] text-[#DF03AF]">
-                            <b>Numero totale di auto:</b>
-                          </td>
-                          <td className="p-[5px] pl-5 text-gray-950">
-                            {report.autoComplessive}
-                            &nbsp; auto
+                            
+                            &nbsp; Libri
                           </td>
                         </tr>
                       </tbody>
@@ -129,4 +109,3 @@ const DashboardComponent = () => {
 };
 
 export default DashboardComponent;
-*/
