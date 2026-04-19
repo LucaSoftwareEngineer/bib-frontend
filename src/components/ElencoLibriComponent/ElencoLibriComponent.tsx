@@ -1,9 +1,17 @@
+import SecureLS from "secure-ls";
 import { useLibri } from "../../hooks/useLibri";
 import NavbarComponent from "../NavbarComponent/NavbarComponent";
+import { useNoleggi } from "../../hooks/useNoleggi";
+import { toast, ToastContainer } from "react-toastify";
 
 
 const ElencoLibriComponent = () => {
     const { libriFiltrati, loading, error, isFiltrato, handlerCercaLibro, handlerResetFiltro } = useLibri();
+
+    const ls = new SecureLS();
+    const details = JSON.parse(ls.get('details'));
+
+    const {creaNoleggio} = useNoleggi();
 
     if (loading) return <div>Caricamento in corso...</div>;
     if (error) return <div>Errore: {error}</div>;
@@ -65,6 +73,27 @@ const ElencoLibriComponent = () => {
                                     <span className={`px-2 py-1 rounded text-white ${libro.disponibile ? 'bg-green-500' : 'bg-red-500'}`}>
                                         {libro.disponibile ? 'Disponibile' : 'Non disponibile'}
                                     </span>
+                                    &nbsp;
+                                    {
+                                        libro.disponibile 
+                                        ? 
+                                        <button
+                                            onClick={() => {
+                                                    creaNoleggio({
+                                                        utenteId: details.utenteId,
+                                                        libroId: libro.libroId,
+                                                        dataNoleggio: new Date().toISOString(),
+                                                        dataRestituzione: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
+                                                    });
+                                                }
+                                            }
+                                            className="cursor-pointer px-2 py-1 rounded text-black bg-amber-500"
+                                        >
+                                            Noleggia
+                                        </button>
+                                        : 
+                                        ''
+                                    }
                                 </td>
                             </tr>
                         ))}
@@ -72,6 +101,7 @@ const ElencoLibriComponent = () => {
                 </table>
             </div>
         </div>
+        <ToastContainer />
         </>
     );
 };

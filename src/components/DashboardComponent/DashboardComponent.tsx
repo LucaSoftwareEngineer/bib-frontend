@@ -91,7 +91,7 @@ const DashboardComponent = () => {
                             <b>Numero di libri noleggiati:</b>
                           </td>
                           <td className="p-[5px] pl-5 text-gray-950">
-                            
+                            {details.noleggi}
                             &nbsp; Libri
                           </td>
                         </tr>
