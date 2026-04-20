@@ -3,13 +3,13 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router";
 import SecureLS from "secure-ls";
+import LogoutService from "../../services/LogoutService/LogoutService.ts";
 
 const NavbarComponent = () => {
 
+  const navigate = useNavigate();
   const ls = new SecureLS();
   const details = JSON.parse(ls.get("details"));
-
-  const navigate = useNavigate();
 
   const [isOpenUserDropDownMenu, setisOpenUserDropDownMenu] = useState(false);
   const [isOpenSidebarMobile, setisOpenSidebarMobile] = useState(true);
@@ -42,6 +42,7 @@ const NavbarComponent = () => {
 
   const logoutHandler = () => {
     toast.success("Logout effettuato correttamente!");
+    LogoutService();
     setTimeout(() => {
       navigate("/");
     }, 3000);

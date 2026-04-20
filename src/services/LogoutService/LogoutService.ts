@@ -2,7 +2,7 @@ import SecureLS from "secure-ls";
 
 const LogoutService = () => {
   const ls = new SecureLS();
-  ls.remove("token");
+  ls.remove("details");
 };
 
 export default LogoutService;
